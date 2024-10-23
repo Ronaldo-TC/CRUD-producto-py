@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <br /><br />
+    <div class="container2">
+      <div class="ronaldo">
+        <h2>TECNOLOGIA EMERGENTES II</h2>
+
+        <label for="">Nombre: Ronaldo Tarqui Copa</label>
+        <br />
+        <label for="">C.I.: 8409238</label>
+      </div>
+      <h1>Gestión de Productos</h1>
+      <a href="{{ url_for('nuevo_producto') }}" style="left: 50%; background-color: #4caf50;">Nuevo Producto</a>
+      <br />
+      <table border="1">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Fecha de Vencimiento</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+        {% for producto in productos %}
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.fecha_vencimiento.strftime('%Y-%m-%d') }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>
+              <a href="{{ url_for('editar_producto', id=producto.id) }}" style="left: 50%; background-color: #4caf50;">Editar</a>
+              <form action="{{ url_for('eliminar_producto', id=producto.id) }}" method="POST">
+                <button style="background-color: #f84f00;">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

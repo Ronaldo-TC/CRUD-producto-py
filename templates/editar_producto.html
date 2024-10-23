@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Editar Producto</h1>
+      <div class="datos">
+        <form action="{{ url_for('editar_producto', id=producto.id) }}" method="POST">
+          Nombre:<input type="text" name="nombre" value="{{ producto.nombre }}" required /><br />
+          Cantidad:<input type="number" name="cantidad" value="{{ producto.cantidad }}" required /><br />
+          Precio:<input type="number" step="0.01" name="precio" value="{{ producto.precio }}" required /><br />
+          Fecha de Vencimiento:<input type="date" name="fecha_vencimiento" value="{{ producto.fecha_vencimiento.strftime('%Y-%m-%d') }}" required /><br />
+          Categoría:<input type="text" name="categoria" value="{{ producto.categoria }}" required /><br />
+          <button>Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
